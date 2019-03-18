@@ -1,8 +1,0 @@
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\obj\x86\Release\USB_IR_sample.Form1.resources
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\obj\x86\Release\USB_IR_KL19AVX_ModelCode.csproj.GenerateResource.cache
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\obj\x86\Release\USB_IR_KL19AVX_ModelCode.csproj.CoreCompileInputs.cache
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\obj\x86\Release\USB_IR_KL19AVX_ModelCode.csproj.CopyComplete
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\bin\x86\Release\USB_IR_KL19AVX_ModelCode.exe.config
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\bin\x86\Release\USB_IR_KL19AVX_ModelCode.exe
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\obj\x86\Release\USB_IR_ModelCode.Properties.Resources.resources
-C:\Users\892526\Desktop\USB_IR_sample_R03\USB_IR_sample\obj\x86\Release\USB_IR_KL19AVX_ModelCode.exe
