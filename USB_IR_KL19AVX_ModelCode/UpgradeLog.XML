@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="USB_IR_sample">
+</Property><Property Name="ソリューション ファイル" Value="C:\Users\892519\Documents\USB_IR_sample_R03\USB_IR_sample.sln">
+</Property><Property Name="ユーザー オプション ファイル" Value="C:\Users\892519\Documents\USB_IR_sample_R03\USB_IR_sample.suo">
+</Property><Property Name="Date" Value="2019年3月13日">
+</Property><Property Name="Time" Value="14:44">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="USB_IR_sample.sln" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample.sln としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="" Source="USB_IR_sample.suo" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample.suo としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\USB_IR_sample.csproj" Description="プロジェクト ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\USB_IR_sample.csproj としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\USB_IR_sample.csproj.user" Description="プロジェクト ユーザー ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\USB_IR_sample.csproj.user としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Form1.cs" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Form1.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Form1.Designer.cs" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Form1.Designer.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Program.cs" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Program.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Properties\AssemblyInfo.cs" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Properties\AssemblyInfo.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Properties\Resources.Designer.cs" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Properties\Resources.Designer.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Properties\Settings.Designer.cs" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Properties\Settings.Designer.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\app.config" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\app.config としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Properties\Settings.settings" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Properties\Settings.settings としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Form1.resx" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Form1.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\Properties\Resources.resx" Description="ファイルは正常に C:\Users\892519\Documents\USB_IR_sample_R03\Backup\USB_IR_sample\Properties\Resources.resx としてバックアップされました。">
+</Event><Event ErrorLevel="1" Project="USB_IR_sample" Source="USB_IR_sample\USB_IR_sample.csproj" Description="このプロジェクトは .NET Framework 2.0 または 3.0 に対応しています。プロジェクトで新しい .NET Framework を必要とするアセンブリを使用すると、ビルドに失敗します。[プロジェクト] メニューの [プロパティ] をクリックし、[.NET Framework] ボックスの一覧で新しいバージョンを選択することにより、.NET Framework のバージョンを変更できます。Visual Basic では、これは [コンパイル] タブの [詳細コンパイラ オプション] ボタンをクリックすると表示されます。">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\USB_IR_sample.csproj" Description="プロジェクトは正常に変換されました。">
+</Event><Event ErrorLevel="3" Project="USB_IR_sample" Source="USB_IR_sample\USB_IR_sample.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="USB_IR_sample.sln" Description="ソリューションは正常に変換されました">
+</Event><Event ErrorLevel="3" Project="" Source="USB_IR_sample.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="USB_IR_sample" Source="USB_IR_sample\app.config" Description="ファイルは正常に変換されました。All &lt;supportedRuntime&gt;と &lt;requiredRuntime&gt; は、プロジェクトをビルドして Visual Studio 2005 で実行できるように削除されました。">
+</Event><Event ErrorLevel="3" Project="USB_IR_sample" Source="USB_IR_sample\app.config" Description="Converted">
+</Event></UpgradeLog>
