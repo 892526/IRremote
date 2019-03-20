@@ -1,4 +1,4 @@
-﻿namespace USB_IR_sample
+﻿namespace USB_IR_ModelCode
 {
     partial class Form1
     {
@@ -44,11 +44,15 @@
             this.btn_ir_code_rec_stop = new System.Windows.Forms.Button();
             this.btn_ir_code_rec_start = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBoxManualInput = new System.Windows.Forms.CheckBox();
+            this.labelModelCode = new System.Windows.Forms.Label();
+            this.textBoxModelCode = new System.Windows.Forms.TextBox();
+            this.labelIRData = new System.Windows.Forms.Label();
+            this.textBoxIRData = new System.Windows.Forms.TextBox();
             this.modelListBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelModelSelect = new System.Windows.Forms.Label();
             this.send_model_code_btn = new System.Windows.Forms.Button();
+            this.version = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -141,13 +145,12 @@
             this.groupBox1.Controls.Add(this.send_mitsubishi_btn);
             this.groupBox1.Controls.Add(this.send_nec_btn);
             this.groupBox1.Controls.Add(this.send_sony_btn);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(23, 266);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(470, 160);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "送信 （１台接続時）";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Text = "送信 （サンプルデータ）";
             // 
             // groupBox2
             // 
@@ -156,7 +159,7 @@
             this.groupBox2.Controls.Add(this.btn_ir_code_get);
             this.groupBox2.Controls.Add(this.btn_ir_code_rec_stop);
             this.groupBox2.Controls.Add(this.btn_ir_code_rec_start);
-            this.groupBox2.Location = new System.Drawing.Point(12, 187);
+            this.groupBox2.Location = new System.Drawing.Point(23, 441);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(470, 100);
             this.groupBox2.TabIndex = 9;
@@ -214,71 +217,110 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.checkBoxManualInput);
+            this.groupBox3.Controls.Add(this.labelModelCode);
+            this.groupBox3.Controls.Add(this.textBoxModelCode);
+            this.groupBox3.Controls.Add(this.labelIRData);
+            this.groupBox3.Controls.Add(this.textBoxIRData);
             this.groupBox3.Controls.Add(this.modelListBox);
-            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.labelModelSelect);
             this.groupBox3.Controls.Add(this.send_model_code_btn);
-            this.groupBox3.Location = new System.Drawing.Point(499, 12);
+            this.groupBox3.Location = new System.Drawing.Point(23, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(470, 275);
+            this.groupBox3.Size = new System.Drawing.Size(470, 237);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "送信（モデルコード）";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
-            // label2
+            // checkBoxManualInput
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 136);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 12);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "赤外線コード (バイトデータ)";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.checkBoxManualInput.AutoSize = true;
+            this.checkBoxManualInput.Location = new System.Drawing.Point(231, 43);
+            this.checkBoxManualInput.Name = "checkBoxManualInput";
+            this.checkBoxManualInput.Size = new System.Drawing.Size(128, 16);
+            this.checkBoxManualInput.TabIndex = 17;
+            this.checkBoxManualInput.Text = "モデルコード手動入力";
+            this.checkBoxManualInput.UseVisualStyleBackColor = true;
+            this.checkBoxManualInput.CheckedChanged += new System.EventHandler(this.checkBoxManualInput_CheckedChanged);
             // 
-            // textBox1
+            // labelModelCode
             // 
-            this.textBox1.Location = new System.Drawing.Point(20, 151);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(422, 19);
-            this.textBox1.TabIndex = 12;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.labelModelCode.AutoSize = true;
+            this.labelModelCode.Location = new System.Drawing.Point(18, 71);
+            this.labelModelCode.Name = "labelModelCode";
+            this.labelModelCode.Size = new System.Drawing.Size(61, 12);
+            this.labelModelCode.TabIndex = 16;
+            this.labelModelCode.Text = "モデルコード";
+            // 
+            // textBoxModelCode
+            // 
+            this.textBoxModelCode.Location = new System.Drawing.Point(20, 86);
+            this.textBoxModelCode.Name = "textBoxModelCode";
+            this.textBoxModelCode.ReadOnly = true;
+            this.textBoxModelCode.Size = new System.Drawing.Size(100, 19);
+            this.textBoxModelCode.TabIndex = 15;
+            this.textBoxModelCode.TextChanged += new System.EventHandler(this.textBoxModelCode_TextChanged);
+            // 
+            // labelIRData
+            // 
+            this.labelIRData.AutoSize = true;
+            this.labelIRData.Location = new System.Drawing.Point(18, 121);
+            this.labelIRData.Name = "labelIRData";
+            this.labelIRData.Size = new System.Drawing.Size(135, 12);
+            this.labelIRData.TabIndex = 14;
+            this.labelIRData.Text = "赤外線コード (バイトデータ)";
+            // 
+            // textBoxIRData
+            // 
+            this.textBoxIRData.Location = new System.Drawing.Point(20, 136);
+            this.textBoxIRData.Name = "textBoxIRData";
+            this.textBoxIRData.Size = new System.Drawing.Size(426, 19);
+            this.textBoxIRData.TabIndex = 12;
             // 
             // modelListBox
             // 
             this.modelListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modelListBox.FormattingEnabled = true;
-            this.modelListBox.Location = new System.Drawing.Point(20, 48);
+            this.modelListBox.Location = new System.Drawing.Point(20, 39);
             this.modelListBox.Name = "modelListBox";
             this.modelListBox.Size = new System.Drawing.Size(145, 20);
             this.modelListBox.TabIndex = 13;
-            this.modelListBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.modelListBox.SelectedIndexChanged += new System.EventHandler(this.modelList_SelectedIndexChanged);
             // 
-            // label1
+            // labelModelSelect
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 12);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "モデルを選択してください。";
+            this.labelModelSelect.AutoSize = true;
+            this.labelModelSelect.Location = new System.Drawing.Point(18, 24);
+            this.labelModelSelect.Name = "labelModelSelect";
+            this.labelModelSelect.Size = new System.Drawing.Size(126, 12);
+            this.labelModelSelect.TabIndex = 8;
+            this.labelModelSelect.Text = "モデルを選択してください。";
             // 
             // send_model_code_btn
             // 
-            this.send_model_code_btn.Location = new System.Drawing.Point(20, 83);
+            this.send_model_code_btn.Location = new System.Drawing.Point(20, 176);
             this.send_model_code_btn.Name = "send_model_code_btn";
-            this.send_model_code_btn.Size = new System.Drawing.Size(200, 23);
+            this.send_model_code_btn.Size = new System.Drawing.Size(426, 44);
             this.send_model_code_btn.TabIndex = 6;
             this.send_model_code_btn.Text = "赤外線コード 送信";
             this.send_model_code_btn.UseVisualStyleBackColor = true;
             this.send_model_code_btn.Click += new System.EventHandler(this.send_model_code_btn_Click);
             // 
+            // version
+            // 
+            this.version.AutoSize = true;
+            this.version.Location = new System.Drawing.Point(364, 559);
+            this.version.Name = "version";
+            this.version.Size = new System.Drawing.Size(52, 12);
+            this.version.TabIndex = 11;
+            this.version.Text = "version : ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 302);
+            this.ClientSize = new System.Drawing.Size(513, 580);
+            this.Controls.Add(this.version);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -292,6 +334,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -314,10 +357,14 @@
         private System.Windows.Forms.Label lbl_get_ir_code_size;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button send_model_code_btn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxIRData;
         private System.Windows.Forms.ComboBox modelListBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelIRData;
+        private System.Windows.Forms.Label labelModelSelect;
+        private System.Windows.Forms.TextBox textBoxModelCode;
+        private System.Windows.Forms.Label labelModelCode;
+        private System.Windows.Forms.CheckBox checkBoxManualInput;
+        private System.Windows.Forms.Label version;
     }
 }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace USB_IR_sample
+namespace USB_IR_ModelCode
 {
     static class Program
     {

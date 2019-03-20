@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("USB_IR_sample")]
+[assembly: AssemblyTitle("USB_IR_KL19AVX_ModelCode")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bit Trade One, LTD.")]
-[assembly: AssemblyProduct("USB_IR_sample")]
-[assembly: AssemblyCopyright("Copyright © 2016 Bit Trade One, LTD.")]
+[assembly: AssemblyCompany("JKC")]
+[assembly: AssemblyProduct("USB_IR_KL19AVX_ModelCode")]
+[assembly: AssemblyCopyright("Copyright © 2019 JKC")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 次の GUID は、このプロジェクトが COM に公開される場合の、typelib の ID です
-[assembly: Guid("35c9df4c-087f-4293-86de-04ebb8c63308")]
+[assembly: Guid("00000000-0000-0000-0000-000000000000")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // すべての値を指定するか、下のように '*' を使ってビルドおよびリビジョン番号を 
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.0.1.*")]
+[assembly: AssemblyFileVersion("0.0.1.0")]
