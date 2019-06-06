@@ -16,62 +16,68 @@ namespace USB_IR_ModelCode
     {
         //モデルコードリスト(とりあえず配列のテーブルを持つようにする・・・)
         private readonly string[,] modelCodeRowData = {
-            {"Slect Model",   ""},       // 00
+            // 00
+            {"Slect Model",   ""},
 
-            {"DDXGT700R A9",  "B9B410"}, // 01
-            {"DDXGT700R2 A9", "B9B430"}, // 02
-            {"DDXGT700R3 A9", "B9B431"}, // 03
-            {"DDXGT701R A9",  "B9B411"}, // 04
-            {"DDXGT702L A9",  "B9B412"}, // 05
-            {"DDXGT704R M",   "B97413"}, // 06
-            {"DDXGT705L M",   "B97432"}, // 07
-            {"DDXGT705L A9",  "B9B433"}, // 08
-            {"DDXGT706R R",   "B93434"}, // 09
-            {"DDXGT706R A9",  "B9B435"}, // 10
+            // 01～10
+            {"DDXGT700R A9",  "B9B410"},
+            {"DDXGT700R2 A9", "B9B430"},
+            {"DDXGT700R3 A9", "B9B431"},
+            {"DDXGT701R A9",  "B9B411"},
+            {"DDXGT702L M",   "B97470"},
+            {"DDXGT702L A9",  "B9B412"},
+            {"DDXGT704R M",   "B97413"},
+            {"DDXGT705L M",   "B97432"},
+            {"DDXGT705L A9",  "B9B433"},
+            {"DDXGT706R R",   "B93434"},
 
-            {"DDXGT706L R",  "B93436"}, // 11
-            {"DDXGT706L A9", "B9B437"}, // 12
-            {"DDXGT707R M",  "B97438"}, // 13
-            {"DDXGT707R A9", "B9B439"}, // 14
-            {"DDXGT707L M",  "B9743A"}, // 15
-            {"DDXGT707L A9", "B9B43B"}, // 16
-            {"DDXGT708L A9", "B9B43C"}, // 17
-            {"DDXGT709R A9", "B9B43D"}, // 18
-            {"DDXGT709L A9", "B9B43E"}, // 19
-            {"DDXGT710R A9", "B9B43F"}, // 20
+            // 11～20
+            {"DDXGT706R A9", "B9B435"},
+            {"DDXGT706L R",  "B93436"},
+            {"DDXGT706L A9", "B9B437"},
+            {"DDXGT707R M",  "B97438"},
+            {"DDXGT707R A9", "B9B439"},
+            {"DDXGT707L M",  "B9743A"},
+            {"DDXGT707L A9", "B9B43B"},
+            {"DDXGT708L A9", "B9B43C"},
+            {"DDXGT709R A9", "B9B43D"},
+            {"DDXGT709L A9", "B9B43E"},
 
-            {"DDXGT711R A9", "B9B440"}, // 21
-            {"DDXGT712L A9", "B9B441"}, // 22
-            {"DDXGT713R A9", "B9B442"}, // 23
-            {"DDXGT714R A9", "B9B443"}, // 24
-            {"DDXGT715L A9", "B9B444"}, // 25
-            {"DDXGT717R A9", "B9B445"}, // 26
-            {"DDXGT500R A9", "B9B420"}, // 27
-            {"DDXGT501R A9", "B9B421"}, // 28
-            {"DDXGT502L A9", "B9B422"}, // 29
-            {"DDXGT504R A9", "B9B450"}, // 30
+            // 21～30
+            {"DDXGT710R A9", "B9B43F"},
+            {"DDXGT711R A9", "B9B440"},
+            {"DDXGT712L A9", "B9B441"},
+            {"DDXGT713R A9", "B9B442"},
+            {"DDXGT714R A9", "B9B443"},
+            {"DDXGT715L A9", "B9B444"},
+            {"DDXGT717R A9", "B9B445"},
+            {"DDXGT500R A9", "B9B420"},
+            {"DDXGT501R A9", "B9B421"},
+            {"DDXGT502L A9", "B9B422"},
 
-            {"DDXGT505L M",  "B97451"}, // 31
-            {"DDXGT505L A9", "B9B452"}, // 32
-            {"DDXGT506R R",  "B93453"}, // 33
-            {"DDXGT506R A9", "B9B454"}, // 34
-            {"DDXGT506L R",  "B93455"}, // 35
-            {"DDXGT506L A9", "B9B456"}, // 36
-            {"DDXGT507R M",  "B97457"}, // 37
-            {"DDXGT507R A9", "B9B458"}, // 38
-            {"DDXGT507L M",  "B97459"}, // 39
-            {"DDXGT507L A9", "B9B45A"}, // 40
-            
-            {"DDXGT508L A9", "B9B45B"}, // 41
-            {"DDXGT509R A9", "B9B45C"}, // 42
-            {"DDXGT509L A9", "B9B45D"}, // 43
-            {"DDXGT510R M",  "B9745E"}, // 44
-            {"DDXGT512L A9", "B9B45F"}, // 45
-            {"DDXGT513R A9", "B9B460"}, // 46
-            {"DDXGT514R A9", "B9B461"}, // 47
-            {"DDXGT515L A9", "B9B462"}, // 48
-            {"DDXGT517R A9", "B9B463"}, // 49
-//            {"", ""}, // 50
+            // 31～40
+            {"DDXGT504R A9", "B9B450"},
+            {"DDXGT505L M",  "B97451"},
+            {"DDXGT505L A9", "B9B452"},
+            {"DDXGT506R R",  "B93453"},
+            {"DDXGT506R A9", "B9B454"},
+            {"DDXGT506L R",  "B93455"},
+            {"DDXGT506L A9", "B9B456"},
+            {"DDXGT507R M",  "B97457"},
+            {"DDXGT507R A9", "B9B458"},
+            {"DDXGT507L M",  "B97459"},
+
+            // 41～50
+            {"DDXGT507L A9", "B9B45A"},
+            {"DDXGT508L A9", "B9B45B"},
+            {"DDXGT509R A9", "B9B45C"},
+            {"DDXGT509L A9", "B9B45D"},
+            {"DDXGT510R M",  "B9745E"},
+            {"DDXGT512L A9", "B9B45F"},
+            {"DDXGT513R A9", "B9B460"},
+            {"DDXGT514R A9", "B9B461"},
+            {"DDXGT515L A9", "B9B462"},
+            {"DDXGT517R A9", "B9B463"},
         };
 
         private bool isFormLoaded;          // formロード完了フラグ
