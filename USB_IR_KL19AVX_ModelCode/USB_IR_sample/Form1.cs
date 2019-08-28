@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Reflection;
+﻿#define USE_FORMS_TIMER     // System.Windows.Forms.Timerを使用する場合
+//#define USE_TIMERS_TIMER    // System.Timers.Timerを使用する場合 (テスト用です。タイマイベントは別スレッドで行いますが、排他処理は実装していませんので実使用はできません。)
 
 using Microsoft.Win32.SafeHandles;
+using System;
+using System.Data;
+using System.Reflection;
+using System.Timers;
+using System.Windows.Forms;
 using USB_IR_Library;
 
 namespace USB_IR_ModelCode
@@ -84,13 +83,18 @@ namespace USB_IR_ModelCode
         };
 
         private bool isFormLoaded;          // formロード完了フラグ
-
+#if USE_FORMS_TIMER
+        private System.Windows.Forms.Timer timer;
+#else
+        private System.Timers.Timer timer;
+#endif
 
         public Form1()
         {
             InitializeComponent();
 
             isFormLoaded = false;
+            timer = null;
          }
 
         private void send_btn_Click(object sender, EventArgs e)
@@ -493,73 +497,94 @@ namespace USB_IR_ModelCode
         // モデルコード送信ボタン
         private void send_model_code_btn_Click(object sender, EventArgs e)
         {
-            SafeFileHandle handle_usb_device = null;    // USB DEVICEハンドル
-            int i_ret = 0;
+
+            if (checkBoxSendPeriodic.Checked == false)
+            {
+                byte[] code = new byte[1];  // dammyで配列を確保
+                uint result = convertIrdataToSendcode(textBoxIRData.Text, ref code);
+                if (result == 0)
+                {
+                    send_model_code_irdata(code);
+                }
+                else
+                {
+                    showErrMessage(result);
+                }
+            }
+
+        }
+
+        // エラーメッセージ表示
+        // param : convertIrdataToSendcodeの結果
+        private void showErrMessage(uint errType)
+        {
+
+            if (errType == 0)
+            {
+                // nothing
+            }
+            else if (errType == 1)
+            {
+                MessageBox.Show("赤外線送信データがありません。モデルを選択するか、モデルコードを入力してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (errType == 2 || errType == 3)
+            {
+                MessageBox.Show("赤外線送信データが正しくありません。また、データ数は４の倍数にしてください。 \n例：[0x01,0x50,0x00,0xAA,0x00,0x16,0x00,0x17, ...]", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("赤外線送信データが正しくありません。データを確認してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        // 文字列のIRデータを送信用コードに変換する
+        // return : 結果 (0:データ変換成功 / 1:データなし / 2:データ異常(バイト数が4の倍数でない) / 3:データ異常(16進数でない))
+        private uint convertIrdataToSendcode(string inIrdataStr, ref byte[] outCode)
+        {
+            uint lResult = 0;
+
             try
             {
-                if (textBoxIRData.Text != "")
+                if (inIrdataStr == "")
                 {
-                    string[] tmp_str_arry;
-                    byte[] code = new byte[1024];
-                    uint ir_data_bit_len = 0;
-                    tmp_str_arry = textBoxIRData.Text.Split(',');
+                    lResult = 1;    // データ異常(データなし)
+                }
+                else
+                {
 
-                    bool error_flag = false;
+                    string[] tmp_str_arry;
+                    uint ir_data_bit_len = 0;
+                    tmp_str_arry = inIrdataStr.Split(',');
+                    Array.Resize(ref outCode, tmp_str_arry.Length);
+
                     if ((tmp_str_arry.Length % 4) == 0)
                     {
                         ir_data_bit_len = (uint)(tmp_str_arry.Length / 4);
-                        code = new byte[tmp_str_arry.Length];
 
                         for (int fi = 0; fi < tmp_str_arry.Length; fi++)
                         {
                             try
                             {
-                                code[fi] = (byte)(Convert.ToUInt32(tmp_str_arry[fi], 16) & 0xFF);
+                                outCode[fi] = (byte)(Convert.ToUInt32(tmp_str_arry[fi], 16) & 0xFF);
                             }
                             catch
                             {
-                                error_flag = true;
+                                lResult = 3;    // データ異常(16進数でない)
                                 break;
                             }
                         }
                     }
                     else
                     {
-                        error_flag = true;
+                        lResult = 2;    // データ異常(バイト数が4の倍数でない)
                     }
 
-                    if (error_flag == false)
-                    {
-                        try
-                        {
-                            // USB DEVICEオープン
-                            handle_usb_device = USBIR.openUSBIR(this.Handle);
-                            if (handle_usb_device != null)
-                            {
-                                // USB DEVICEへ送信 パラメータ[USB DEVICEハンドル、周波数、送信赤外線コード、赤外線コードのビット長]
-                                i_ret = USBIR.writeUSBIRData(handle_usb_device, 38000, code, ir_data_bit_len);
-                            }
-                        }
-                        catch
-                        {
-                        }
-                        finally
-                        {
-                            if (handle_usb_device != null)
-                            {
-                                // USB DEVICEクローズ
-                                i_ret = USBIR.closeUSBIR(handle_usb_device);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("赤外線送信データが正しくありません。また、データ数は４の倍数にしてください。 \n例：[0x01,0x50,0x00,0xAA,0x00,0x16,0x00,0x17, ...]", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("赤外線送信データがありません。モデルを選択するか、モデルコードを入力してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // debug
+                    //foreach (var val in outCode) {
+                    //    Console.WriteLine("IRcode : {0:X}", val);
+                    //}
+
                 }
 
             }
@@ -569,7 +594,59 @@ namespace USB_IR_ModelCode
             finally
             {
             }
+
+            return lResult;
         }
+
+        // モデルコードのIRデータ送信
+        // return : 結果 (true:OK / false:NG)
+        private bool send_model_code_irdata(byte[] code)
+        {
+            bool lResult = false;
+
+            if (code == null) {
+                Console.WriteLine("send_model_code ERR. input code is null.");
+                return false;
+            }
+
+            if ( (code.Length % 4) != 0)
+            {
+                Console.WriteLine("send_model_code ERR. input code is not multiple of 4.");
+                return false;
+            }
+
+            SafeFileHandle handle_usb_device = null;    // USB DEVICEハンドル
+            int i_ret = 0;
+            try
+            {
+                // USB DEVICEオープン
+                handle_usb_device = USBIR.openUSBIR(this.Handle);
+                if (handle_usb_device != null)
+                {
+                    // USB DEVICEへ送信 パラメータ[USB DEVICEハンドル、周波数、送信赤外線コード、赤外線コードのビット長]
+                    i_ret = USBIR.writeUSBIRData(handle_usb_device, 38000, code, ir_data_bit_len);
+                    // 関数が成功すると0 が返ります。失敗すると-1 が返ります。
+                    if (i_ret == 0)
+                    {
+                        lResult = true;
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (handle_usb_device != null)
+                {
+                    // USB DEVICEクローズ
+                    i_ret = USBIR.closeUSBIR(handle_usb_device);
+                }
+            }
+
+            return lResult;
+        }
+
 
         private void modelList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -658,6 +735,7 @@ namespace USB_IR_ModelCode
         readonly byte[] data_1      = { 0x00, 0x16, 0x00, 0x42 };   // data 1
 
         // IRデータ作成
+        // (文字列のIRデータを生成する)
         private bool createIrdata(string inModelCode, ref string outIrdata)
         {
 
@@ -760,6 +838,7 @@ namespace USB_IR_ModelCode
             return true;
         }
 
+        // モデルコード手動入力モードチェックボックス変更
         private void checkBoxManualInput_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxManualInput.Checked == true)
@@ -772,6 +851,99 @@ namespace USB_IR_ModelCode
             }
         }
 
+        // 周期送信モードチェックボックス変更
+        private void checkBoxSendPeriodic_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSendPeriodic.Checked == true)
+            {
+                changeSendSyclikMode(true);
+            }
+            else
+            {
+                changeSendSyclikMode(false);
+            }
+        }
+
+        // 周期送信モード変更
+        private void changeSendSyclikMode(Boolean isEnable)
+        {
+            if (isEnable == true)
+            {
+                send_model_code_btn.Enabled = false;
+                startPeriodicSend();
+            }
+            else
+            {
+                stopPeriodicSend();
+                send_model_code_btn.Enabled = true;
+            }
+
+            // チェックボックス表示更新
+            if (checkBoxSendPeriodic.Checked != isEnable)
+            {
+                checkBoxSendPeriodic.Checked = isEnable;
+            }
+
+        }
+
+        // 周期送信用タイマ開始
+        private void startPeriodicSend()
+        {
+#if USE_FORMS_TIMER
+            // System.Windows.Forms.Timerを使用する場合
+            if (timer == null)
+            {
+                timer = new System.Windows.Forms.Timer();
+                timer.Tick += new EventHandler(timerSendPeriodicEvent);
+                timer.Interval = 1000;
+            }
+#else
+            // System.Timers.Timerを使用する場合
+            if (timer == null)
+            {
+                timer = new System.Timers.Timer();
+                timer.Elapsed += new ElapsedEventHandler(timerSendPeriodicEvent);
+                timer.Interval = 1000;
+            }
+#endif
+
+            timer.Start();
+        }
+
+        // 周期送信用タイマ停止
+        private void stopPeriodicSend()
+        {
+            timer.Stop();
+        }
+
+        // 周期送信イベント
+#if USE_FORMS_TIMER
+        private void timerSendPeriodicEvent(object sender, EventArgs e)
+#else
+        private void timerSendPeriodicEvent(object sender, ElapsedEventArgs e)
+#endif
+        {
+            Console.WriteLine("Periodec sending : {0}", DateTime.Now);    // debug
+
+            byte[] code = new byte[1];  // dammyで配列を確保
+            uint lResult = convertIrdataToSendcode(textBoxIRData.Text, ref code);
+            if (lResult == 0)
+            {
+                send_model_code_irdata(code);
+            }
+            else
+            {
+                Console.WriteLine("Stop periodic sending");
+                if (this.InvokeRequired) {
+                    Invoke(new Action<Boolean>(changeSendSyclikMode), false);
+                } else {
+                    changeSendSyclikMode(false);
+                }
+
+                showErrMessage(lResult);
+            }
+
+        }
 
     }
 }
