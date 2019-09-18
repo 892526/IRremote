@@ -44,6 +44,8 @@
             this.btn_ir_code_rec_stop = new System.Windows.Forms.Button();
             this.btn_ir_code_rec_start = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelPeriodic = new System.Windows.Forms.Label();
+            this.checkBoxSendPeriodic = new System.Windows.Forms.CheckBox();
             this.checkBoxManualInput = new System.Windows.Forms.CheckBox();
             this.labelModelCode = new System.Windows.Forms.Label();
             this.textBoxModelCode = new System.Windows.Forms.TextBox();
@@ -53,9 +55,11 @@
             this.labelModelSelect = new System.Windows.Forms.Label();
             this.send_model_code_btn = new System.Windows.Forms.Button();
             this.version = new System.Windows.Forms.Label();
+            this.numericUpDownPeriodic = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPeriodic)).BeginInit();
             this.SuspendLayout();
             // 
             // send_btn
@@ -217,6 +221,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.numericUpDownPeriodic);
+            this.groupBox3.Controls.Add(this.labelPeriodic);
+            this.groupBox3.Controls.Add(this.checkBoxSendPeriodic);
             this.groupBox3.Controls.Add(this.checkBoxManualInput);
             this.groupBox3.Controls.Add(this.labelModelCode);
             this.groupBox3.Controls.Add(this.textBoxModelCode);
@@ -232,10 +239,30 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "送信（モデルコード）";
             // 
+            // labelPeriodic
+            // 
+            this.labelPeriodic.AutoSize = true;
+            this.labelPeriodic.Location = new System.Drawing.Point(384, 192);
+            this.labelPeriodic.Name = "labelPeriodic";
+            this.labelPeriodic.Size = new System.Drawing.Size(41, 12);
+            this.labelPeriodic.TabIndex = 20;
+            this.labelPeriodic.Text = "秒周期";
+            // 
+            // checkBoxSendPeriodic
+            // 
+            this.checkBoxSendPeriodic.AutoSize = true;
+            this.checkBoxSendPeriodic.Location = new System.Drawing.Point(321, 168);
+            this.checkBoxSendPeriodic.Name = "checkBoxSendPeriodic";
+            this.checkBoxSendPeriodic.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxSendPeriodic.TabIndex = 18;
+            this.checkBoxSendPeriodic.Text = "周期送信";
+            this.checkBoxSendPeriodic.UseVisualStyleBackColor = true;
+            this.checkBoxSendPeriodic.CheckedChanged += new System.EventHandler(this.checkBoxSendPeriodic_CheckedChanged);
+            // 
             // checkBoxManualInput
             // 
             this.checkBoxManualInput.AutoSize = true;
-            this.checkBoxManualInput.Location = new System.Drawing.Point(231, 43);
+            this.checkBoxManualInput.Location = new System.Drawing.Point(231, 86);
             this.checkBoxManualInput.Name = "checkBoxManualInput";
             this.checkBoxManualInput.Size = new System.Drawing.Size(128, 16);
             this.checkBoxManualInput.TabIndex = 17;
@@ -257,7 +284,7 @@
             this.textBoxModelCode.Location = new System.Drawing.Point(20, 86);
             this.textBoxModelCode.Name = "textBoxModelCode";
             this.textBoxModelCode.ReadOnly = true;
-            this.textBoxModelCode.Size = new System.Drawing.Size(100, 19);
+            this.textBoxModelCode.Size = new System.Drawing.Size(145, 19);
             this.textBoxModelCode.TabIndex = 15;
             this.textBoxModelCode.TextChanged += new System.EventHandler(this.textBoxModelCode_TextChanged);
             // 
@@ -298,9 +325,9 @@
             // 
             // send_model_code_btn
             // 
-            this.send_model_code_btn.Location = new System.Drawing.Point(20, 176);
+            this.send_model_code_btn.Location = new System.Drawing.Point(20, 168);
             this.send_model_code_btn.Name = "send_model_code_btn";
-            this.send_model_code_btn.Size = new System.Drawing.Size(426, 44);
+            this.send_model_code_btn.Size = new System.Drawing.Size(280, 44);
             this.send_model_code_btn.TabIndex = 6;
             this.send_model_code_btn.Text = "赤外線コード 送信";
             this.send_model_code_btn.UseVisualStyleBackColor = true;
@@ -314,6 +341,38 @@
             this.version.Size = new System.Drawing.Size(52, 12);
             this.version.TabIndex = 11;
             this.version.Text = "version : ";
+            // 
+            // numericUpDownPeriodic
+            // 
+            this.numericUpDownPeriodic.DecimalPlaces = 1;
+            this.numericUpDownPeriodic.Enabled = false;
+            this.numericUpDownPeriodic.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDownPeriodic.Location = new System.Drawing.Point(321, 190);
+            this.numericUpDownPeriodic.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numericUpDownPeriodic.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDownPeriodic.Name = "numericUpDownPeriodic";
+            this.numericUpDownPeriodic.Size = new System.Drawing.Size(57, 19);
+            this.numericUpDownPeriodic.TabIndex = 25;
+            this.numericUpDownPeriodic.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownPeriodic.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numericUpDownPeriodic.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDownPeriodic.ValueChanged += new System.EventHandler(this.numericUpDownPeriodic_ValueChanged);
             // 
             // Form1
             // 
@@ -333,6 +392,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPeriodic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +425,9 @@
         private System.Windows.Forms.Label labelModelCode;
         private System.Windows.Forms.CheckBox checkBoxManualInput;
         private System.Windows.Forms.Label version;
+        private System.Windows.Forms.CheckBox checkBoxSendPeriodic;
+        private System.Windows.Forms.Label labelPeriodic;
+        private System.Windows.Forms.NumericUpDown numericUpDownPeriodic;
     }
 }
 
