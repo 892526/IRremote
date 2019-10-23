@@ -52,9 +52,10 @@ namespace USB_IR_ModelCode
             {"DDXGT717R A9",    "B9B445"},
             {"DDXGT500R A9",    "B9B420"},
             {"DDXGT500R2 A9",   "B9B480"},
-            {"DDXGT501R A9",    "B9B421"},
+            {"DDXGT500R4 A9",   "B9B481"},
 
             // 31～40
+            {"DDXGT501R A9",    "B9B421"},
             {"DDXGT502L A9",    "B9B422"},
             {"DDXGT504R A9",    "B9B450"},
             {"DDXGT505L M",     "B97451"},
@@ -64,9 +65,9 @@ namespace USB_IR_ModelCode
             {"DDXGT506L R",     "B93455"},
             {"DDXGT506L A9",    "B9B456"},
             {"DDXGT507R M",     "B97457"},
-            {"DDXGT507R A9",    "B9B458"},
 
             // 41～50
+            {"DDXGT507R A9",    "B9B458"},
             {"DDXGT507L M",     "B97459"},
             {"DDXGT507L A9",    "B9B45A"},
             {"DDXGT508L A9",    "B9B45B"},
@@ -76,9 +77,9 @@ namespace USB_IR_ModelCode
             {"DDXGT512L A9",    "B9B45F"},
             {"DDXGT513R A9",    "B9B460"},
             {"DDXGT514R A9",    "B9B461"},
-            {"DDXGT515L A9",    "B9B462"},
 
             // 51～60
+            {"DDXGT515L A9",    "B9B462"},
             {"DDXGT517R A9",    "B9B463"},
         };
 
