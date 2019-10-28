@@ -502,10 +502,11 @@ namespace USB_IR_ModelCode
             if (checkBoxSendPeriodic.Checked == false)
             {
                 byte[] code = new byte[1];  // dammyで配列を確保
-                uint result = convertIrdataToSendcode(textBoxIRData.Text, ref code);
+                uint bitlen = 0;
+                uint result = convertIrdataToSendcode(textBoxIRData.Text, ref code, ref bitlen);
                 if (result == 0)
                 {
-                    send_model_code_irdata(code);
+                    send_model_code_irdata(code, bitlen);
                 }
                 else
                 {
@@ -540,8 +541,11 @@ namespace USB_IR_ModelCode
         }
 
         // 文字列のIRデータを送信用コードに変換する
+        // param : [in] inIrdataStr      IRデータ文字列
+        // param : [out] outCode         送信用IRコード
+        // param : [out] outIrdataBitLen 送信用IRコードのビット長
         // return : 結果 (0:データ変換成功 / 1:データなし / 2:データ異常(バイト数が4の倍数でない) / 3:データ異常(16進数でない))
-        private uint convertIrdataToSendcode(string inIrdataStr, ref byte[] outCode)
+        private uint convertIrdataToSendcode(string inIrdataStr, ref byte[] outCode, ref uint outIrdataBitLen)
         {
             uint lResult = 0;
 
@@ -555,13 +559,12 @@ namespace USB_IR_ModelCode
                 {
 
                     string[] tmp_str_arry;
-                    uint ir_data_bit_len = 0;
                     tmp_str_arry = inIrdataStr.Split(',');
                     Array.Resize(ref outCode, tmp_str_arry.Length);
 
                     if ((tmp_str_arry.Length % 4) == 0)
                     {
-                        ir_data_bit_len = (uint)(tmp_str_arry.Length / 4);
+                        outIrdataBitLen = (uint)(tmp_str_arry.Length / 4);
 
                         for (int fi = 0; fi < tmp_str_arry.Length; fi++)
                         {
@@ -601,7 +604,7 @@ namespace USB_IR_ModelCode
 
         // モデルコードのIRデータ送信
         // return : 結果 (true:OK / false:NG)
-        private bool send_model_code_irdata(byte[] code)
+        private bool send_model_code_irdata(byte[] code, uint ir_data_bit_len)
         {
             bool lResult = false;
 
@@ -931,10 +934,11 @@ namespace USB_IR_ModelCode
             Console.WriteLine("Periodec sending : {0}", DateTime.Now);    // debug
 
             byte[] code = new byte[1];  // dammyで配列を確保
-            uint lResult = convertIrdataToSendcode(textBoxIRData.Text, ref code);
+            uint bitlen = 0;
+            uint lResult = convertIrdataToSendcode(textBoxIRData.Text, ref code, ref bitlen);
             if (lResult == 0)
             {
-                send_model_code_irdata(code);
+                send_model_code_irdata(code, bitlen);
             }
             else
             {
